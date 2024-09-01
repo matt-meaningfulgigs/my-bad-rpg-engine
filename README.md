@@ -1,4 +1,4 @@
-# Matt's Shitty Little Pathetic Excuse for an RPG Engine
+# Matt's Little Pathetic Excuse for an RPG Engine
 
 ## Prerequisites
 
