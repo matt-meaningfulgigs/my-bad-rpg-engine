@@ -1,0 +1,252 @@
+{
+    "npc1": {
+        "name": "Cool Steve",
+        "map": "map1",
+        "start_pos": [10, 8],
+        "bounds": [3, 3],
+        "color": [0, 255, 0],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Hey, what’s up?",
+                "options": [
+                    {"response": "Just exploring!", "next": "explore"},
+                    {"response": "Not much, you?", "next": "not_much"}
+                ]
+            },
+            "explore": {
+                "text": "Nice! Enjoy the adventure, but watch out for angry homeowners.",
+                "options": []
+            },
+            "not_much": {
+                "text": "Same here. Just chilling, enjoying the weather.",
+                "options": []
+            }
+        }
+    },
+    "npc2": {
+        "name": "Chill Emma",
+        "map": "map1",
+        "start_pos": [15, 12],
+        "bounds": [3, 3],
+        "color": [0, 255, 255],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Beautiful day, huh?",
+                "options": [
+                    {"response": "Yeah, it is!", "next": "agree"},
+                    {"response": "I guess so.", "next": "meh"}
+                ]
+            },
+            "agree": {
+                "text": "Glad you see it that way. Take it easy out there!",
+                "options": []
+            },
+            "meh": {
+                "text": "Well, try to find something you enjoy. It's a good day for it!",
+                "options": []
+            }
+        }
+    },
+    "npc3": {
+        "name": "Angry Bob",
+        "map": "house1",
+        "start_pos": [8, 3],
+        "bounds": [2, 2],
+        "color": [255, 0, 0],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "What the hell are you doing in my house?",
+                "options": [
+                    {"response": "Just looking around...", "next": "intruder"},
+                    {"response": "I got lost.", "next": "lost"}
+                ]
+            },
+            "intruder": {
+                "text": "Looking around?! How about I look around your pockets and take whatever I find, huh?",
+                "options": []
+            },
+            "lost": {
+                "text": "Lost, huh? Well, you're about to lose more than your way if you don't scram!",
+                "options": []
+            }
+        }
+    },
+    "npc4": {
+        "name": "Charming Linda",
+        "map": "house2",
+        "start_pos": [4, 5],
+        "bounds": [2, 2],
+        "color": [255, 0, 255],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Well, well, what do we have here?",
+                "options": [
+                    {"response": "Just passing through.", "next": "passing_through"},
+                    {"response": "Hi there!", "next": "flirt"}
+                ]
+            },
+            "passing_through": {
+                "text": "Passing through? You could stay a while... I wouldn't mind.",
+                "options": []
+            },
+            "flirt": {
+                "text": "Oh, I like a bold one! Too bad my husband doesn't...",
+                "options": []
+            }
+        }
+    },
+    "npc5": {
+        "name": "Jealous Mike",
+        "map": "house2",
+        "start_pos": [6, 5],
+        "bounds": [2, 2],
+        "color": [0, 0, 255],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "What are you doing talking to my wife?!",
+                "options": [
+                    {"response": "It's not what it looks like.", "next": "not_what_it_looks_like"},
+                    {"response": "Just being friendly.", "next": "friendly"}
+                ]
+            },
+            "not_what_it_looks_like": {
+                "text": "Yeah, right! If I see you again, I'll make sure you regret it!",
+                "options": []
+            },
+            "friendly": {
+                "text": "Friendly? You can take your 'friendly' and shove it!",
+                "options": []
+            }
+        }
+    },
+    "npc6": {
+        "name": "Mean Joe",
+        "map": "map1",
+        "start_pos": [5, 15],
+        "bounds": [4, 4],
+        "color": [255, 165, 0],
+        "movement_level": "wandering",
+        "dialogue": {
+            "start": {
+                "text": "Who let you out of the house looking like that?",
+                "options": [
+                    {"response": "I thought I looked okay...", "next": "okay"},
+                    {"response": "Sorry...", "next": "sorry"}
+                ]
+            },
+            "okay": {
+                "text": "Well, you thought wrong! Go change before you scare someone!",
+                "options": []
+            },
+            "sorry": {
+                "text": "Yeah, you should be! Next time, dress like a normal person.",
+                "options": []
+            }
+        }
+    },
+    "npc7": {
+        "name": "Roastmaster Kyle",
+        "map": "map1",
+        "start_pos": [12, 10],
+        "bounds": [3, 3],
+        "color": [128, 0, 128],
+        "movement_level": "roaming",
+        "dialogue": {
+            "start": {
+                "text": "Here comes the most average person in town!",
+                "options": [
+                    {"response": "Average isn't so bad...", "next": "average"},
+                    {"response": "I try my best!", "next": "best"}
+                ]
+            },
+            "average": {
+                "text": "Keep telling yourself that. Maybe one day you'll believe it!",
+                "options": []
+            },
+            "best": {
+                "text": "Your best? If that's your best, I'd hate to see your worst!",
+                "options": []
+            }
+        }
+    },
+    "npc8": {
+        "name": "Snarky Sarah",
+        "map": "map2",
+        "start_pos": [7, 9],
+        "bounds": [4, 4],
+        "color": [0, 128, 128],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Did you really just come over here to waste my time?",
+                "options": [
+                    {"response": "I didn't mean to...", "next": "waste_time"},
+                    {"response": "I was just curious...", "next": "curious"}
+                ]
+            },
+            "waste_time": {
+                "text": "Well, congratulations, you succeeded! Now get lost.",
+                "options": []
+            },
+            "curious": {
+                "text": "Curious? About what? How to be annoying? You're a natural!",
+                "options": []
+            }
+        }
+    },
+    "npc9": {
+        "name": "Bitter Brenda",
+        "map": "map2",
+        "start_pos": [10, 13],
+        "bounds": [3, 3],
+        "color": [255, 0, 0],
+        "movement_level": "wandering",
+        "dialogue": {
+            "start": {
+                "text": "Oh look, another lost soul. What do you want?",
+                "options": [
+                    {"response": "Just looking around...", "next": "looking_around"},
+                    {"response": "I was hoping to chat.", "next": "chat"}
+                ]
+            },
+            "looking_around": {
+                "text": "Well, you've found nothing but my annoyance. Move along!",
+                "options": []
+            },
+            "chat": {
+                "text": "Chat? With you? I'd rather talk to a wall!",
+                "options": []
+            }
+        }
+    },
+    "npc10": {
+        "name": "Mocking Tom",
+        "map": "map2",
+        "start_pos": [15, 7],
+        "bounds": [4, 4],
+        "color": [128, 128, 0],
+        "movement_level": "roaming",
+        "dialogue": {
+            "start": {
+                "text": "Oh, it's you... again.",
+                "options": [
+                    {"response": "Yeah, it's me...", "next": "yeah_its_me"},
+                    {"response": "Sorry to bother you.", "next": "sorry_bother"}
+                ]
+            },
+            "yeah_its_me": {
+                "text": "Wow, that's the most excitement you've had all day, huh?",
+                "options": []
+            },
+            "sorry_bother": {
+                "text": "Well, you succeeded. Now go bother someone else.",
+                "options": []
+            }
+        }
+    }
+}
