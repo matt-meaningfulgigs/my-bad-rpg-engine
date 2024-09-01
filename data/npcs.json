@@ -1,250 +1,611 @@
 {
-    "npc1": {
-        "name": "Cool Steve",
+    "homer": {
+        "name": "Homer Simpson",
         "map": "map1",
         "start_pos": [10, 8],
         "bounds": [3, 3],
-        "color": [0, 255, 0],
+        "color": [255, 255, 0],
         "movement_level": "restless",
         "dialogue": {
             "start": {
-                "text": "Hey, what’s up?",
+                "text": "D'oh! What are you doing here?",
                 "options": [
-                    {"response": "Just exploring!", "next": "explore"},
+                    {"response": "Just exploring Springfield.", "next": "explore"},
                     {"response": "Not much, you?", "next": "not_much"}
                 ]
             },
             "explore": {
-                "text": "Nice! Enjoy the adventure, but watch out for angry homeowners.",
-                "options": []
+                "text": "Well, don't eat my donuts! Or drink my beer!",
+                "options": [
+                    {"response": "Can I have a donut?", "next": "donut"},
+                    {"response": "I'll just look around.", "next": "look_around"}
+                ]
             },
             "not_much": {
-                "text": "Same here. Just chilling, enjoying the weather.",
+                "text": "Just thinking about donuts... mmm, donuts.",
+                "options": []
+            },
+            "donut": {
+                "text": "Okay, but only one! And you owe me a beer later.",
+                "options": []
+            },
+            "look_around": {
+                "text": "Fine, but remember, Springfield is a dangerous place!",
                 "options": []
             }
         }
     },
-    "npc2": {
-        "name": "Chill Emma",
+    "marge": {
+        "name": "Marge Simpson",
         "map": "map1",
         "start_pos": [15, 12],
         "bounds": [3, 3],
-        "color": [0, 255, 255],
-        "movement_level": "toodling",
-        "dialogue": {
-            "start": {
-                "text": "Beautiful day, huh?",
-                "options": [
-                    {"response": "Yeah, it is!", "next": "agree"},
-                    {"response": "I guess so.", "next": "meh"}
-                ]
-            },
-            "agree": {
-                "text": "Glad you see it that way. Take it easy out there!",
-                "options": []
-            },
-            "meh": {
-                "text": "Well, try to find something you enjoy. It's a good day for it!",
-                "options": []
-            }
-        }
-    },
-    "npc3": {
-        "name": "Angry Bob",
-        "map": "house1",
-        "start_pos": [8, 3],
-        "bounds": [2, 2],
-        "color": [255, 0, 0],
-        "movement_level": "toodling",
-        "dialogue": {
-            "start": {
-                "text": "What the hell are you doing in my house?",
-                "options": [
-                    {"response": "Just looking around...", "next": "intruder"},
-                    {"response": "I got lost.", "next": "lost"}
-                ]
-            },
-            "intruder": {
-                "text": "Looking around?! How about I look around your pockets and take whatever I find, huh?",
-                "options": []
-            },
-            "lost": {
-                "text": "Lost, huh? Well, you're about to lose more than your way if you don't scram!",
-                "options": []
-            }
-        }
-    },
-    "npc4": {
-        "name": "Charming Linda",
-        "map": "house2",
-        "start_pos": [4, 5],
-        "bounds": [2, 2],
-        "color": [255, 0, 255],
-        "movement_level": "restless",
-        "dialogue": {
-            "start": {
-                "text": "Well, well, what do we have here?",
-                "options": [
-                    {"response": "Just passing through.", "next": "passing_through"},
-                    {"response": "Hi there!", "next": "flirt"}
-                ]
-            },
-            "passing_through": {
-                "text": "Passing through? You could stay a while... I wouldn't mind.",
-                "options": []
-            },
-            "flirt": {
-                "text": "Oh, I like a bold one! Too bad my husband doesn't...",
-                "options": []
-            }
-        }
-    },
-    "npc5": {
-        "name": "Jealous Mike",
-        "map": "house2",
-        "start_pos": [6, 5],
-        "bounds": [2, 2],
         "color": [0, 0, 255],
         "movement_level": "toodling",
         "dialogue": {
             "start": {
-                "text": "What are you doing talking to my wife?!",
+                "text": "Oh my... you look just like Chad Sexington, the Burly paper towel man. So strong, so rugged...",
                 "options": [
-                    {"response": "It's not what it looks like.", "next": "not_what_it_looks_like"},
-                    {"response": "Just being friendly.", "next": "friendly"}
+                    {"response": "Do I really, Marge?", "next": "flirt"},
+                    {"response": "Just passing through.", "next": "passing_through"}
                 ]
             },
-            "not_what_it_looks_like": {
-                "text": "Yeah, right! If I see you again, I'll make sure you regret it!",
+            "flirt": {
+                "text": "Yes, you do... Maybe you could help me with something... like reaching the top shelf, or... something more personal?",
+                "options": [
+                    {"response": "What did you have in mind?", "next": "suggestion"},
+                    {"response": "I'm not sure that's a good idea.", "next": "back_off"}
+                ]
+            },
+            "passing_through": {
+                "text": "Oh, that's too bad. But maybe you could stay a while? You’ve got the hands of a man who knows how to take care of a woman...",
                 "options": []
             },
-            "friendly": {
-                "text": "Friendly? You can take your 'friendly' and shove it!",
+            "suggestion": {
+                "text": "Well, I could use some help... Maybe you could start by giving me a nice backrub... and then, who knows where those strong hands might wander?",
+                "options": [
+                    {"response": "Let's take it slow, Marge.", "next": "slow"},
+                    {"response": "Okay, let's get closer.", "next": "get_closer"}
+                ]
+            },
+            "back_off": {
+                "text": "Oh, don’t be shy... I won't bite... unless you want me to.",
+                "options": []
+            },
+            "slow": {
+                "text": "Alright, but don’t keep me waiting too long… I’ve been dreaming about those strong arms wrapped around me.",
+                "options": []
+            },
+            "get_closer": {
+                "text": "Mmm... You know just what I need. Let’s make this a moment we’ll both remember forever...",
                 "options": []
             }
         }
     },
-    "npc6": {
-        "name": "Mean Joe",
+    "bart": {
+        "name": "Bart Simpson",
         "map": "map1",
-        "start_pos": [5, 15],
-        "bounds": [4, 4],
+        "start_pos": [8, 3],
+        "bounds": [2, 2],
         "color": [255, 165, 0],
         "movement_level": "wandering",
         "dialogue": {
             "start": {
-                "text": "Who let you out of the house looking like that?",
+                "text": "Hey man, wanna help me prank someone?",
                 "options": [
-                    {"response": "I thought I looked okay...", "next": "okay"},
-                    {"response": "Sorry...", "next": "sorry"}
+                    {"response": "Sure, what do you need?", "next": "prank"},
+                    {"response": "No thanks, Bart.", "next": "no_thanks"}
                 ]
             },
-            "okay": {
-                "text": "Well, you thought wrong! Go change before you scare someone!",
+            "prank": {
+                "text": "Great! Let's put glue on the teacher's chair!",
+                "options": [
+                    {"response": "That sounds awesome!", "next": "awesome"},
+                    {"response": "Maybe another time.", "next": "another_time"}
+                ]
+            },
+            "no_thanks": {
+                "text": "Aww, you're no fun.",
                 "options": []
             },
-            "sorry": {
-                "text": "Yeah, you should be! Next time, dress like a normal person.",
+            "awesome": {
+                "text": "Haha, you're cool! Meet me at the school later!",
+                "options": []
+            },
+            "another_time": {
+                "text": "Suit yourself, loser.",
                 "options": []
             }
         }
     },
-    "npc7": {
-        "name": "Roastmaster Kyle",
+    "edna": {
+        "name": "Edna Krabappel",
         "map": "map1",
-        "start_pos": [12, 10],
+        "start_pos": [12, 9],
         "bounds": [3, 3],
-        "color": [128, 0, 128],
-        "movement_level": "roaming",
+        "color": [255, 0, 0],
+        "movement_level": "toodling",
         "dialogue": {
             "start": {
-                "text": "Here comes the most average person in town!",
+                "text": "Hey there, you look like someone who needs a little... guidance.",
                 "options": [
-                    {"response": "Average isn't so bad...", "next": "average"},
-                    {"response": "I try my best!", "next": "best"}
+                    {"response": "What kind of guidance?", "next": "guidance"},
+                    {"response": "Just looking around.", "next": "look_around"}
                 ]
             },
-            "average": {
-                "text": "Keep telling yourself that. Maybe one day you'll believe it!",
+            "guidance": {
+                "text": "Oh, I could teach you a thing or two... but only if you’re willing to learn.",
+                "options": [
+                    {"response": "I'm a fast learner.", "next": "fast_learner"},
+                    {"response": "Maybe another time.", "next": "another_time"}
+                ]
+            },
+            "look_around": {
+                "text": "Don’t get lost... unless you want me to find you.",
                 "options": []
             },
-            "best": {
-                "text": "Your best? If that's your best, I'd hate to see your worst!",
+            "fast_learner": {
+                "text": "That’s what I like to hear. Let’s start with a private lesson... Just you and me.",
+                "options": [
+                    {"response": "I'm ready for anything, Edna.", "next": "ready"},
+                    {"response": "Maybe we should keep this professional.", "next": "professional"}
+                ]
+            },
+            "another_time": {
+                "text": "Suit yourself, but I won’t wait forever... You know where to find me.",
+                "options": []
+            },
+            "ready": {
+                "text": "Mmm, I love a confident man. Let’s see if you can keep up with me...",
+                "options": []
+            },
+            "professional": {
+                "text": "Who said anything about professional? I was thinking we could keep it... personal.",
                 "options": []
             }
         }
     },
-    "npc8": {
-        "name": "Snarky Sarah",
-        "map": "map2",
-        "start_pos": [7, 9],
-        "bounds": [4, 4],
-        "color": [0, 128, 128],
-        "movement_level": "restless",
-        "dialogue": {
-            "start": {
-                "text": "Did you really just come over here to waste my time?",
-                "options": [
-                    {"response": "I didn't mean to...", "next": "waste_time"},
-                    {"response": "I was just curious...", "next": "curious"}
-                ]
-            },
-            "waste_time": {
-                "text": "Well, congratulations, you succeeded! Now get lost.",
-                "options": []
-            },
-            "curious": {
-                "text": "Curious? About what? How to be annoying? You're a natural!",
-                "options": []
-            }
-        }
-    },
-    "npc9": {
-        "name": "Bitter Brenda",
+    "moe": {
+        "name": "Moe Szyslak",
         "map": "map2",
         "start_pos": [10, 13],
         "bounds": [3, 3],
-        "color": [255, 0, 0],
+        "color": [128, 128, 128],
         "movement_level": "wandering",
         "dialogue": {
             "start": {
-                "text": "Oh look, another lost soul. What do you want?",
+                "text": "Hey, pal. You here for a drink, or are you just here to cause trouble?",
                 "options": [
-                    {"response": "Just looking around...", "next": "looking_around"},
-                    {"response": "I was hoping to chat.", "next": "chat"}
+                    {"response": "I'll take a drink.", "next": "drink"},
+                    {"response": "I'm just passing through.", "next": "passing_through"}
                 ]
             },
-            "looking_around": {
-                "text": "Well, you've found nothing but my annoyance. Move along!",
+            "drink": {
+                "text": "Good choice. But no funny business, you hear?",
                 "options": []
             },
-            "chat": {
-                "text": "Chat? With you? I'd rather talk to a wall!",
+            "passing_through": {
+                "text": "Well, don't let the door hit you on the way out.",
                 "options": []
             }
         }
     },
-    "npc10": {
-        "name": "Mocking Tom",
+    "selma": {
+        "name": "Selma Bouvier",
         "map": "map2",
         "start_pos": [15, 7],
         "bounds": [4, 4],
-        "color": [128, 128, 0],
-        "movement_level": "roaming",
+        "color": [128, 0, 128],
+        "movement_level": "restless",
         "dialogue": {
             "start": {
-                "text": "Oh, it's you... again.",
+                "text": "Hey there, handsome. I don't suppose you'd like to keep a lonely woman company?",
                 "options": [
-                    {"response": "Yeah, it's me...", "next": "yeah_its_me"},
-                    {"response": "Sorry to bother you.", "next": "sorry_bother"}
+                    {"response": "I'm just here to talk.", "next": "talk"},
+                    {"response": "Maybe for a while.", "next": "while"}
                 ]
             },
-            "yeah_its_me": {
-                "text": "Wow, that's the most excitement you've had all day, huh?",
+            "talk": {
+                "text": "Talk? Why don't we do something more... fun? I could use a strong man like you to keep me warm.",
+                "options": [
+                    {"response": "What do you have in mind?", "next": "mind"},
+                    {"response": "I should go.", "next": "go"}
+                ]
+            },
+            "while": {
+                "text": "I like a man who knows what he wants. How about we take this somewhere private? Just you and me...",
+                "options": [
+                    {"response": "Let's take it slow.", "next": "slow"},
+                    {"response": "Alright, lead the way.", "next": "lead_way"}
+                ]
+            },
+            "mind": {
+                "text": "I've got a few ideas... We could start with a drink, and see where the night takes us...",
                 "options": []
             },
-            "sorry_bother": {
-                "text": "Well, you succeeded. Now go bother someone else.",
+            "go": {
+                "text": "Your loss, sweetheart. But I'll be here if you change your mind. I'll be thinking about you...",
+                "options": []
+            },
+            "slow": {
+                "text": "Slow and steady wins the race... but I wouldn't mind speeding things up with someone like you.",
+                "options": []
+            },
+            "lead_way": {
+                "text": "Right this way, darling. Let's make this night unforgettable.",
+                "options": []
+            }
+        }
+    },
+    "lisa": {
+        "name": "Lisa Simpson",
+        "map": "map2",
+        "start_pos": [7, 9],
+        "bounds": [4, 4],
+        "color": [255, 255, 0],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Did you know that the average IQ in Springfield is... oh, never mind.",
+                "options": [
+                    {"response": "Tell me more!", "next": "tell_more"},
+                    {"response": "Maybe later, Lisa.", "next": "later"}
+                ]
+            },
+            "tell_more": {
+                "text": "Well, if you really want to know, I could give you a full lecture...",
+                "options": [
+                    {"response": "I'd love that!", "next": "lecture"},
+                    {"response": "Actually, maybe later.", "next": "later"}
+                ]
+            },
+            "lecture": {
+                "text": "Great! Let's start with quantum mechanics...",
+                "options": []
+            },
+            "later": {
+                "text": "Alright, but you’re missing out on some amazing knowledge!",
+                "options": []
+            }
+        }
+    },
+    "maggie": {
+        "name": "Maggie Simpson",
+        "map": "map2",
+        "start_pos": [12, 10],
+        "bounds": [2, 2],
+        "color": [255, 192, 203],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Maggie stares at you with her big, innocent eyes.",
+                "options": [
+                    {"response": "Wave at Maggie.", "next": "wave"},
+                    {"response": "Walk away.", "next": "walk_away"}
+                ]
+            },
+            "wave": {
+                "text": "Maggie smiles and waves back.",
+                "options": []
+            },
+            "walk_away": {
+                "text": "Maggie watches you leave, her eyes still locked on you.",
+                "options": []
+            }
+        }
+    },
+    "agnes": {
+        "name": "Agnes Skinner",
+        "map": "map2",
+        "start_pos": [8, 5],
+        "bounds": [3, 3],
+        "color": [128, 128, 0],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Well, well... You remind me of a younger, more handsome man... someone who could really make Principal Skinner pay...",
+                "options": [
+                    {"response": "You must miss those days.", "next": "miss_him"},
+                    {"response": "I should go.", "next": "go"}
+                ]
+            },
+            "miss_him": {
+                "text": "Oh, I do... but I wouldn’t mind finding a new man to put that prissy little mama's boy in his place.",
+                "options": [
+                    {"response": "I’m flattered.", "next": "flattered"},
+                    {"response": "I'm not looking to settle down.", "next": "settle_down"}
+                ]
+            },
+            "go": {
+                "text": "Running away? That's too bad... I was just getting interested in showing you what a real woman can do.",
+                "options": []
+            },
+            "flattered": {
+                "text": "Good. Now, how about we discuss this over a nice dinner? I make a mean lasagna... and I know a few other things that might surprise you.",
+                "options": []
+            },
+            "settle_down": {
+                "text": "Who said anything about settling down? I just want a good time with a good man... and you seem like the perfect candidate to make Skinner jealous.",
+                "options": []
+            }
+        }
+    },
+    "maude": {
+        "name": "Maude Flanders",
+        "map": "map1",
+        "start_pos": [14, 11],
+        "bounds": [2, 2],
+        "color": [0, 255, 0],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Oh, my... You look like an angel sent from heaven, here to take me to... a very sensual paradise...",
+                "options": [
+                    {"response": "I’m here to help, Maude.", "next": "help"},
+                    {"response": "Just passing through.", "next": "passing_through"}
+                ]
+            },
+            "help": {
+                "text": "That’s sweet of you... Maybe you could help me with more than just chores? Maybe you could help me ascend to a... higher place...",
+                "options": [
+                    {"response": "What do you need?", "next": "need"},
+                    {"response": "I’m not sure that’s appropriate.", "next": "not_appropriate"}
+                ]
+            },
+            "passing_through": {
+                "text": "That’s a shame... I was hoping you could be my guide to that... higher plane.",
+                "options": []
+            },
+            "need": {
+                "text": "I’ve got a few things in mind... but let’s keep it between us. You seem like a man who could handle... a little divine intervention.",
+                "options": [
+                    {"response": "I'm good at keeping secrets.", "next": "secrets"},
+                    {"response": "This might be crossing a line...", "next": "crossing_line"}
+                ]
+            },
+            "not_appropriate": {
+                "text": "Maybe not... but sometimes the most sacred things are... a little naughty.",
+                "options": []
+            },
+            "secrets": {
+                "text": "Good... Because I can think of a few things I’d love to do with you... things that would make even an angel blush.",
+                "options": []
+            },
+            "crossing_line": {
+                "text": "Maybe... but isn’t it fun to break the rules every now and then? Even the divine have their... indulgences.",
+                "options": []
+            }
+        }
+    },
+    "kirk": {
+        "name": "Kirk Van Houten",
+        "map": "house2",
+        "start_pos": [6, 7],
+        "bounds": [2, 2],
+        "color": [128, 0, 128],
+        "movement_level": "wandering",
+        "dialogue": {
+            "start": {
+                "text": "Oh, you’re here... Please, go ahead and talk to Luanne. I’ll just... be in the closet.",
+                "options": [
+                    {"response": "Are you sure, Kirk?", "next": "sure"},
+                    {"response": "Maybe this isn’t right...", "next": "not_right"}
+                ]
+            },
+            "sure": {
+                "text": "Yes, yes, go ahead. I... I won’t watch. Much.",
+                "options": []
+            },
+            "not_right": {
+                "text": "No, it’s fine... Really. Luanne likes strong men like you.",
+                "options": []
+            }
+        }
+    },
+    "luanne": {
+        "name": "Luanne Van Houten",
+        "map": "house2",
+        "start_pos": [7, 8],
+        "bounds": [2, 2],
+        "color": [255, 105, 180],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Oh, it’s you. Kirk told me you’d be stopping by... He says you’re just his type.",
+                "options": [
+                    {"response": "Kirk’s okay with this?", "next": "kirk_ok"},
+                    {"response": "This feels wrong.", "next": "feels_wrong"}
+                ]
+            },
+            "kirk_ok": {
+                "text": "Oh, don’t worry about Kirk. He’s... well, let’s just say he has his own interests. He likes to watch...",
+                "options": [
+                    {"response": "Alright then, let’s continue.", "next": "continue"},
+                    {"response": "I’m not sure about this.", "next": "not_sure"}
+                ]
+            },
+            "feels_wrong": {
+                "text": "Maybe... but wouldn’t it be fun to bend the rules a little? Kirk likes to watch from the closet...",
+                "options": []
+            },
+            "continue": {
+                "text": "Good... I could use some attention. Kirk has been so... absent lately. Let’s make him pay attention for once.",
+                "options": []
+            },
+            "not_sure": {
+                "text": "You’re hesitating? That’s okay. Just know that I’m here... and so is Kirk... in the closet... whenever you’re ready.",
+                "options": []
+            }
+        }
+    },
+    "mr_burns": {
+        "name": "Mr. Burns",
+        "map": "map1",
+        "start_pos": [18, 15],
+        "bounds": [3, 3],
+        "color": [0, 0, 0],
+        "movement_level": "wandering",
+        "dialogue": {
+            "start": {
+                "text": "Ah, an employee! Or are you here to make a deal with the devil?",
+                "options": [
+                    {"response": "What do you have in mind?", "next": "deal"},
+                    {"response": "Just passing through.", "next": "passing_through"}
+                ]
+            },
+            "deal": {
+                "text": "Excellent... Sign this contract and all your dreams will come true... or else.",
+                "options": []
+            },
+            "passing_through": {
+                "text": "Hmm, no matter. I’ll be watching you...",
+                "options": []
+            }
+        }
+    },
+    "milhouse": {
+        "name": "Milhouse Van Houten",
+        "map": "map2",
+        "start_pos": [9, 7],
+        "bounds": [2, 2],
+        "color": [0, 255, 255],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Hey, you’re not here to make fun of me, are you?",
+                "options": [
+                    {"response": "No, of course not!", "next": "no_fun"},
+                    {"response": "Maybe a little.", "next": "maybe_fun"}
+                ]
+            },
+            "no_fun": {
+                "text": "Phew, thanks! I’ve had enough of that from Bart...",
+                "options": []
+            },
+            "maybe_fun": {
+                "text": "Aww, man... You’re just like everyone else!",
+                "options": []
+            }
+        }
+    },
+    "apu": {
+        "name": "Apu Nahasapeemapetilon",
+        "map": "map1",
+        "start_pos": [11, 7],
+        "bounds": [2, 2],
+        "color": [255, 223, 0],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Welcome! What can I get for you today?",
+                "options": [
+                    {"response": "Just browsing.", "next": "browse"},
+                    {"response": "Got any deals?", "next": "deals"}
+                ]
+            },
+            "browse": {
+                "text": "Take your time. But remember, no loitering!",
+                "options": []
+            },
+            "deals": {
+                "text": "Ah, a savvy shopper! Let me show you today’s specials...",
+                "options": []
+            }
+        }
+    },
+    "nelson": {
+        "name": "Nelson Muntz",
+        "map": "map2",
+        "start_pos": [12, 11],
+        "bounds": [3, 3],
+        "color": [139, 69, 19],
+        "movement_level": "wandering",
+        "dialogue": {
+            "start": {
+                "text": "Haw-haw! You here to get your butt kicked?",
+                "options": [
+                    {"response": "Not today, Nelson.", "next": "not_today"},
+                    {"response": "Bring it on!", "next": "bring_it"}
+                ]
+            },
+            "not_today": {
+                "text": "Yeah, that’s what I thought. Loser.",
+                "options": []
+            },
+            "bring_it": {
+                "text": "Alright! Let’s see what you’ve got!",
+                "options": []
+            }
+        }
+    },
+    "ralph": {
+        "name": "Ralph Wiggum",
+        "map": "map2",
+        "start_pos": [7, 6],
+        "bounds": [2, 2],
+        "color": [255, 20, 147],
+        "movement_level": "toodling",
+        "dialogue": {
+            "start": {
+                "text": "Hi, I’m Ralph! My cat's breath smells like cat food.",
+                "options": [
+                    {"response": "That’s nice, Ralph.", "next": "nice"},
+                    {"response": "I’ve got to go, Ralph.", "next": "go"}
+                ]
+            },
+            "nice": {
+                "text": "Thanks! I like you!",
+                "options": []
+            },
+            "go": {
+                "text": "Bye! I’m going to eat crayons now.",
+                "options": []
+            }
+        }
+    },
+    "smithers": {
+        "name": "Waylon Smithers",
+        "map": "house1",
+        "start_pos": [5, 5],
+        "bounds": [2, 2],
+        "color": [192, 192, 192],
+        "movement_level": "restless",
+        "dialogue": {
+            "start": {
+                "text": "Oh my stars... You look just like Mr. Burns in his younger years... strong, commanding... I’ve never been more sure of my feelings...",
+                "options": [
+                    {"response": "It’s just you and me, Smithers.", "next": "just_us"},
+                    {"response": "I’ll come back later.", "next": "come_back"}
+                ]
+            },
+            "just_us": {
+                "text": "Well, I suppose... I could use the company. You know, Mr. Burns has always been my guiding star... but you, you’re something else... something I never dared to dream of.",
+                "options": [
+                    {"response": "I can keep you company.", "next": "company"},
+                    {"response": "Maybe this isn’t the right time.", "next": "not_right_time"}
+                ]
+            },
+            "come_back": {
+                "text": "Alright, but don’t keep me waiting too long... It’s rare to find someone who can... fill Mr. Burns' shoes.",
+                "options": []
+            },
+            "company": {
+                "text": "You’re very kind... and rather charming. Perhaps we could... get to know each other better? I’ve always wondered what it would be like to be with someone like you... someone who could command a room just like Mr. Burns.",
+                "options": [
+                    {"response": "I’d like that, Smithers.", "next": "like_that"},
+                    {"response": "Let’s take things slow.", "next": "slow"}
+                ]
+            },
+            "not_right_time": {
+                "text": "I understand... But know that I’ll be here, thinking about you... and what might have been.",
+                "options": []
+            },
+            "like_that": {
+                "text": "Mmm... I’ve never felt this way before. You’re quite irresistible... It’s like Mr. Burns, but with... something more... something I never thought possible.",
+                "options": []
+            },
+            "slow": {
+                "text": "Slow is good... But I hope you won’t keep me waiting forever. There’s a fire burning inside me that only you can quench.",
                 "options": []
             }
         }
