@@ -291,9 +291,9 @@ class Game:
             option_surface = font.render(option_text, True, (200, 200, 200))
             self.screen.blit(option_surface, (50, 450 + (len(wrapped_text) + i) * 30))
 
-        leave_text = f"{len(dialogue["options"]) + 1}. Smell you later"
+        leave_text = f"{len(dialogue['options']) + 1}. Smell you later"
         leave_surface = font.render(leave_text, True, (200, 200, 200))
-        self.screen.blit(leave_surface, (50, 450 + (len(wrapped_text) + len(dialogue["options"])) * 30))
+        self.screen.blit(leave_surface, (50, 450 + (len(wrapped_text) + len(dialogue['options'])) * 30))
 
         # Check for dialogue option selection
         keys = pygame.key.get_pressed()
@@ -327,11 +327,13 @@ class Game:
         next_dialogue_key = self.current_dialogue["options"][option_index]["next"]
         npc["current_dialogue"] = next_dialogue_key
         self.current_dialogue = npc["dialogue"][next_dialogue_key]
-        if not self.current_dialogue["options"]:
-            self.interacting = False
-            npc["moving"] = True  # Resume NPC movement after final dialogue
+        
+        # Continue the conversation if there are follow-up options
+        if self.current_dialogue["options"]:
+            self.render_dialogue(self.current_dialogue)  # Show NPC's follow-up and new options
         else:
-            self.render_dialogue(self.current_dialogue)  # Immediately transition to the next dialogue
+            # If no options are left, continue with the NPC's final response
+            self.render_dialogue(self.current_dialogue)  # Show the last part of the conversation
 
     def leave_conversation(self):
         self.interacting = False
