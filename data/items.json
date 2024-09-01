@@ -1,0 +1,22 @@
+{
+    "lingerie": {
+        "name": "Marge's Chanel Lingerie",
+        "description": "The iconic pink Chanel suit that Marge wore in a high-society episode, heavily modified into scandalous lingerie."
+    },
+    "diary_page": {
+        "name": "Edna's Diary Page",
+        "description": "A page torn from Edna Krabappel's diary, filled with her scandalous thoughts about the time you shared together."
+    },
+    "macguyvers_pubes": {
+        "name": "MacGyver's Pubes",
+        "description": "A lock of MacGyver's pubes, lovingly stolen by Selma Bouvier, who treasures her favorite TV star."
+    },
+    "nun_outfit": {
+        "name": "Sexy Nun Outfit",
+        "description": "A revealing nun outfit from Maude Flanders, hinting at her secretly wild side."
+    },
+    "burns_doll": {
+        "name": "Burns Doll",
+        "description": "A life size, handcrafted silicone doll of Mr. Burns, lovingly made by Smithers as a companion, with a strangely large hole between the legs."
+    }
+}

@@ -1,8 +1,9 @@
 import pygame
 
 class ConversationEngine:
-    def __init__(self, screen):
+    def __init__(self, screen, game_instance):
         self.screen = screen
+        self.game_instance = game_instance
         self.current_dialogue = None
         self.npc = None
         self.character_image = None
@@ -13,7 +14,31 @@ class ConversationEngine:
     def start_conversation(self, npc, on_end_callback):
         print(f"[ConversationEngine] Starting conversation with NPC: {npc['name']}")
         self.npc = npc
-        self.current_dialogue = npc["dialogue"]["start"]
+
+        # Determine the dialogue key based on seduction level
+        seduction_level = npc.get("seduction_level", "None")
+        
+        if seduction_level == "None":
+            dialogue_key = "start"
+        else:
+            dialogue_key = f"seduction_{seduction_level}"
+
+        # Attempt to get the dialogue
+        self.current_dialogue = npc["dialogue"].get(dialogue_key, {}).get("start", None)
+
+        # If no dialogue is found and seduction level is not None, fallback to start
+        if self.current_dialogue is None:
+            print(f"[ConversationEngine] No valid dialogue found for {npc['name']} with seduction level {seduction_level}. Falling back to start dialogue.")
+            self.current_dialogue = npc["dialogue"].get("start", None)
+
+        # If still no valid dialogue, end the conversation
+        if self.current_dialogue is None:
+            print(f"[ConversationEngine] No valid start dialogue found for {npc['name']}. Ending conversation.")
+            self.conversation_active = False
+            if on_end_callback:
+                on_end_callback()
+            return
+
         self.conversation_active = True
         self.on_end = on_end_callback
 
@@ -34,12 +59,15 @@ class ConversationEngine:
     def handle_conversation(self):
         print("[ConversationEngine] Handling conversation...")
         while self.conversation_active and self.current_dialogue:
-            print(f"[ConversationEngine] Current Dialogue: {self.current_dialogue['text']}")
+            print(f"[ConversationEngine] Current Dialogue: {self.current_dialogue['text'] if self.current_dialogue else 'None'}")
             self.render_conversation()
             self.wait_for_player_input()
         print("[ConversationEngine] Exiting conversation loop.")
 
     def render_conversation(self):
+        if self.current_dialogue is None:
+            return  # Avoid rendering if there's no valid dialogue
+
         self.screen.fill((0, 0, 0), (0, 380, 800, 220))
         self.screen.blit(self.character_image, (600, 180))
 
@@ -74,6 +102,7 @@ class ConversationEngine:
                         option_index = event.key - pygame.K_1
                         if option_index < len(self.current_dialogue["options"]):
                             print(f"[ConversationEngine] Player selected option {option_index + 1}: {self.current_dialogue['options'][option_index]['response']}")
+                            self.update_seduction_level(option_index)  # Update seduction level first
                             self.select_dialogue_option(option_index)
                             waiting_for_input = False
                         elif option_index == len(self.current_dialogue["options"]):
@@ -87,10 +116,34 @@ class ConversationEngine:
 
     def select_dialogue_option(self, option_index):
         next_dialogue_key = self.current_dialogue["options"][option_index]["next"]
-        self.current_dialogue = self.npc["dialogue"].get(next_dialogue_key, None)
         print(f"[ConversationEngine] Selected dialogue option {option_index + 1}, moving to: {next_dialogue_key}")
+        self.current_dialogue = self.npc["dialogue"].get(next_dialogue_key, None)
+
         if self.current_dialogue is None:
             self.end_conversation()
+
+    def update_seduction_level(self, option_index):
+        # Modify the NPC's seduction level based on the selected option
+        seduction_change = self.current_dialogue["options"][option_index].get("seduction_change", 0)
+        new_seduction_level = self.npc.get("seduction_level", 0) + seduction_change
+        self.npc["seduction_level"] = min(max(new_seduction_level, 0), 3)  # Clamp between 0 and 3
+
+        # Update the NPC's dialogue level based on the new seduction level
+        self.npc["current_dialogue"] = f"seduction_{self.npc['seduction_level']}"
+        if seduction_change > 0:
+            print(f"[ConversationEngine] Seduction level increased to {self.npc['seduction_level']}.")
+            if self.npc["seduction_level"] == 3:
+                self.give_item(self.npc)  # NPC gives an item when fully seduced
+        elif seduction_change < 0:
+            print(f"[ConversationEngine] Seduction level decreased to {self.npc['seduction_level']}.")
+
+    def give_item(self, npc):
+        # Give an item to the player based on the NPC and their seduction level
+        item_key = f"{npc['id']}_gift"
+        item = self.game_instance.items.get(item_key, None)
+        if item:
+            self.game_instance.inventory.append(item)
+            print(f"[ConversationEngine] {npc['name']} gave you {item['name']}!")
 
     def end_conversation(self):
         print("[ConversationEngine] Ending conversation.")

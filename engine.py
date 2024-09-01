@@ -14,13 +14,18 @@ class Game:
     def __init__(self, screen):
         self.screen = screen
         self.menu_engine = MenuEngine(screen)
-        self.conversation_engine = ConversationEngine(screen)
+        self.conversation_engine = ConversationEngine(screen, self)  # Pass self as game_instance
         self.combat_engine = CombatEngine(screen)
         self.credits_engine = CreditsEngine(screen)
         self.current_state = "menu"
         self.player_move_delay = 0.25
         self.last_player_move_time = time.time()
 
+        # Emojis for heart and smoke effects
+        self.heart_emoji = pygame.font.Font(None, 50).render("❤️", True, (255, 0, 0))
+        self.smoke_emoji = pygame.font.Font(None, 50).render("🌩️", True, (169, 169, 169))
+
+        self.current_npc = None  # To track the current NPC being interacted with
         self.run_game()
 
     def run_game(self):
@@ -60,7 +65,18 @@ class Game:
         for npc_id, npc_info in self.npcs.items():
             start_pos = self.find_nearest_non_wall(npc_info["start_pos"], npc_info["map"])
             movement_range = self.get_movement_range(npc_info["movement_level"])
+            first_name = npc_info["name"].split()[0]  # Extract the first name
+
+            # Handle seduction_level, converting it to an integer or None
+            seduction_level = npc_info.get("seduction_level", None)
+            if seduction_level is not None and seduction_level != 'None':
+                try:
+                    seduction_level = int(seduction_level)
+                except ValueError:
+                    seduction_level = None  # Fallback if conversion fails
+
             self.npc_data[npc_id] = {
+                "name": first_name,
                 "pos": start_pos,
                 "start_pos": start_pos[:],
                 "last_move_time": time.time(),
@@ -74,6 +90,9 @@ class Game:
                 "map": npc_info["map"],
                 "move_count": 0,
                 "return_to_start": False,
+                "seduction_level": seduction_level,
+                "effect_start_time": None,
+                "effect_type": None
             }
 
     def update(self):
@@ -98,6 +117,7 @@ class Game:
         if keys[pygame.K_SPACE] and not self.interacting:
             npc = self.check_for_npc_interaction()
             if npc:
+                self.current_npc = npc  # Track the current NPC
                 self.current_state = "conversation"
                 self.conversation_engine.start_conversation(npc, self.end_conversation)
 
@@ -263,7 +283,7 @@ class Game:
         if self.current_state == "exploring":
             self.render_exploration()
         elif self.current_state == "conversation":
-            self.conversation_engine.render()
+            self.conversation_engine.render_conversation()
         elif self.current_state == "combat":
             self.combat_engine.render()
         elif self.current_state == "menu":
@@ -275,19 +295,107 @@ class Game:
         self.screen.fill((0, 0, 0))
         self.draw_map()
 
+        # Draw the player
         pygame.draw.rect(self.screen, (0, 255, 0), pygame.Rect(
             (self.player_pos[0] - self.camera_offset[0]) * 32,
             (self.player_pos[1] - self.camera_offset[1]) * 32,
             32, 32))
 
+        # Font for NPC names
+        font = pygame.font.Font(None, 24)
+
+        # Draw the NPCs with their names
         for npc_id, npc in self.npc_data.items():
             if npc["map"] == self.current_map:
-                pygame.draw.rect(self.screen, npc["color"], pygame.Rect(
+                # Draw the NPC
+                npc_rect = pygame.Rect(
                     (npc["pos"][0] - self.camera_offset[0]) * 32,
                     (npc["pos"][1] - self.camera_offset[1]) * 32,
-                    32, 32))
+                    32, 32
+                )
+                pygame.draw.rect(self.screen, npc["color"], npc_rect)
+
+                # Render the NPC's first name
+                name_surface = font.render(npc["name"], True, (255, 255, 255))
+                name_rect = name_surface.get_rect(center=npc_rect.center)
+
+                # Blit the name onto the NPC's sprite
+                self.screen.blit(name_surface, name_rect)
+
+                # Render the effects (hearts or smoke)
+                self.render_effects(npc, npc_rect)
 
         pygame.display.flip()
+
+    def render_effects(self, npc, npc_rect):
+        current_time = time.time()
+
+        # Skip rendering effects if seduction level is None
+        seduction_level = npc.get("seduction_level", None)
+        
+        if seduction_level is None:
+            return
+        
+        # Ensure seduction_level is an integer
+        try:
+            seduction_level = int(seduction_level)
+        except (ValueError, TypeError):
+            return  # Skip rendering if seduction_level can't be converted to an integer
+
+        if seduction_level >= 3:
+            # Render hearts when fully seduced
+            if "effect_start_time" not in npc or current_time - npc["effect_start_time"] > random.uniform(1.5, 2.5):
+                npc["effect_start_time"] = current_time
+                npc["effect_type"] = "heart"
+                self.create_rising_effect(npc_rect, self.heart_emoji)
+        elif seduction_level < 0:
+            # Render smoke when seduction level is below 0
+            if "effect_start_time" not in npc or current_time - npc["effect_start_time"] > random.uniform(1.5, 2.5):
+                npc["effect_start_time"] = current_time
+                npc["effect_type"] = "smoke"
+                self.create_rising_effect(npc_rect, self.smoke_emoji)
+
+    def create_rising_effect(self, npc_rect, emoji_surface):
+        start_x = npc_rect.centerx
+        start_y = npc_rect.top - 10
+        effect_surface = emoji_surface.copy()
+        effect_start_time = time.time()
+
+        while time.time() - effect_start_time < 2:  # The effect lasts 2 seconds
+            current_time = time.time()
+            elapsed_time = current_time - effect_start_time
+            fade = max(0, int(255 * (1 - elapsed_time / 2)))
+            effect_surface.set_alpha(fade)
+
+            self.screen.blit(effect_surface, (start_x, start_y - int(elapsed_time * 20)))
+            pygame.display.flip()
+            pygame.time.delay(50)  # Delay to create the floating effect
+
+    def end_conversation(self):
+        print("[Game] Conversation ended, returning to exploration mode.")
+        
+        if self.current_npc and self.current_npc.get("seduction_level") is not None:
+            try:
+                # Convert seduction_level to an integer if it is not already
+                current_level = int(self.current_npc.get("seduction_level", 0))
+            except ValueError:
+                current_level = 0  # Default to 0 if the conversion fails
+
+            # Adjust seduction level based on player's choices
+            seduction_change = self.conversation_engine.npc.get("seduction_change", 0)
+            new_seduction_level = current_level + seduction_change
+            self.current_npc["seduction_level"] = min(max(new_seduction_level, -1), 3)  # Clamp between -1 and 3
+
+            # Update the NPC's dialogue level based on the new seduction level
+            self.current_npc["current_dialogue"] = f"seduction_{self.current_npc['seduction_level']}"
+            if seduction_change > 0:
+                print(f"[Game] Seduction level increased to {self.current_npc['seduction_level']}.")
+            elif seduction_change < 0:
+                print(f"[Game] Seduction level decreased to {self.current_npc['seduction_level']}.")
+
+        self.current_npc = None  # Clear the current NPC after the conversation ends
+        self.current_state = "exploring"
+        self.interacting = False
 
     def draw_map(self):
         for y in range(len(self.tile_map)):
@@ -305,8 +413,3 @@ class Game:
                         self.screen.blit(self.door_image, (draw_x, draw_y))
                     elif tile.startswith('P['):
                         self.screen.blit(self.portal_image, (draw_x, draw_y))
-
-    def end_conversation(self):
-        print("[Game] Conversation ended, returning to exploration mode.")
-        self.current_state = "exploring"
-        self.interacting = False

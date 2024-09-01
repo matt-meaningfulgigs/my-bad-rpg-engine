@@ -6,6 +6,7 @@
         "bounds": [3, 3],
         "color": [255, 255, 0],
         "movement_level": "restless",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "D'oh! What are you doing here?",
@@ -42,43 +43,103 @@
         "bounds": [3, 3],
         "color": [0, 0, 255],
         "movement_level": "toodling",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Oh my... you look just like Chad Sexington, the Burly paper towel man. So strong, so rugged...",
-                "options": [
-                    {"response": "Do I really, Marge?", "next": "flirt"},
-                    {"response": "Just passing through.", "next": "passing_through"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Oh my... you look just like Chad Sexington, the Burly paper towel man. So strong, so rugged...",
+                    "options": [
+                        {"response": "Do I really, Marge?", "next": "flirt", "seduction_change": 1},
+                        {"response": "Just passing through.", "next": "passing_through", "seduction_change": 0}
+                    ]
+                },
+                "flirt": {
+                    "text": "Yes, you do... Maybe you could help me with something... like reaching the top shelf, or... something more personal?",
+                    "options": [
+                        {"response": "What did you have in mind?", "next": "suggestion", "seduction_change": 1},
+                        {"response": "I'm not sure that's a good idea.", "next": "back_off", "seduction_change": -1}
+                    ]
+                },
+                "passing_through": {
+                    "text": "Oh, that's too bad. But maybe you could stay a while? You’ve got the hands of a man who knows how to take care of a woman...",
+                    "options": []
+                },
+                "suggestion": {
+                    "text": "Well, I could use some help... Maybe you could start by giving me a nice backrub... and then, who knows where those strong hands might wander?",
+                    "options": [
+                        {"response": "Let's take it slow, Marge.", "next": "slow", "seduction_change": 0},
+                        {"response": "Okay, let's get closer.", "next": "get_closer", "seduction_change": 1}
+                    ]
+                },
+                "back_off": {
+                    "text": "Oh, don’t be shy... I won't bite... unless you want me to.",
+                    "options": []
+                },
+                "slow": {
+                    "text": "Alright, but don’t keep me waiting too long… I’ve been dreaming about those strong arms wrapped around me.",
+                    "options": []
+                },
+                "get_closer": {
+                    "text": "Mmm... You know just what I need. Let’s make this a moment we’ll both remember forever...",
+                    "options": []
+                }
             },
-            "flirt": {
-                "text": "Yes, you do... Maybe you could help me with something... like reaching the top shelf, or... something more personal?",
-                "options": [
-                    {"response": "What did you have in mind?", "next": "suggestion"},
-                    {"response": "I'm not sure that's a good idea.", "next": "back_off"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "I can't stop thinking about you... Those strong arms, that rugged look... You're driving me wild.",
+                    "options": [
+                        {"response": "Maybe we should get to know each other better.", "next": "get_closer_1", "seduction_change": 1},
+                        {"response": "I'm just here to help.", "next": "help", "seduction_change": 0}
+                    ]
+                },
+                "get_closer_1": {
+                    "text": "I was hoping you'd say that... Maybe you could show me just how strong you are...",
+                    "options": [
+                        {"response": "Why don't we find somewhere more private?", "next": "private", "seduction_change": 1},
+                        {"response": "I'm not sure this is a good idea.", "next": "bad_idea", "seduction_change": -1}
+                    ]
+                },
+                "help": {
+                    "text": "You're sweet, but I was hoping for something a little more... intimate.",
+                    "options": []
+                },
+                "private": {
+                    "text": "Mmm... That sounds perfect. Let's go somewhere where we can be alone.",
+                    "options": []
+                },
+                "bad_idea": {
+                    "text": "Oh... I see. Maybe you're not ready yet.",
+                    "options": []
+                }
             },
-            "passing_through": {
-                "text": "Oh, that's too bad. But maybe you could stay a while? You’ve got the hands of a man who knows how to take care of a woman...",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "I can't wait any longer... I need you, now.",
+                    "options": [
+                        {"response": "Let's not waste any more time.", "next": "no_time", "seduction_change": 1},
+                        {"response": "We need to think this through.", "next": "think_through", "seduction_change": 0}
+                    ]
+                },
+                "no_time": {
+                    "text": "Mmm... That's exactly what I wanted to hear. Let's make this night unforgettable.",
+                    "options": []
+                },
+                "think_through": {
+                    "text": "Maybe you're right... But I can't help how I feel.",
+                    "options": []
+                }
             },
-            "suggestion": {
-                "text": "Well, I could use some help... Maybe you could start by giving me a nice backrub... and then, who knows where those strong hands might wander?",
-                "options": [
-                    {"response": "Let's take it slow, Marge.", "next": "slow"},
-                    {"response": "Okay, let's get closer.", "next": "get_closer"}
-                ]
-            },
-            "back_off": {
-                "text": "Oh, don’t be shy... I won't bite... unless you want me to.",
-                "options": []
-            },
-            "slow": {
-                "text": "Alright, but don’t keep me waiting too long… I’ve been dreaming about those strong arms wrapped around me.",
-                "options": []
-            },
-            "get_closer": {
-                "text": "Mmm... You know just what I need. Let’s make this a moment we’ll both remember forever...",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "I've never felt this way about anyone... You're the only one for me.",
+                    "options": [
+                        {"response": "You're the only one I want, Marge.", "next": "final_seduction", "seduction_change": 0, "item": "lingerie"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Mmm... I want to make this last forever. Take this as a token of my love.",
+                    "options": []
+                }
             }
         }
     },
@@ -89,6 +150,7 @@
         "bounds": [2, 2],
         "color": [255, 165, 0],
         "movement_level": "wandering",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Hey man, wanna help me prank someone?",
@@ -125,43 +187,103 @@
         "bounds": [3, 3],
         "color": [255, 0, 0],
         "movement_level": "toodling",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Hey there, you look like someone who needs a little... guidance.",
-                "options": [
-                    {"response": "What kind of guidance?", "next": "guidance"},
-                    {"response": "Just looking around.", "next": "look_around"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Hey there, you look like someone who needs a little... guidance.",
+                    "options": [
+                        {"response": "What kind of guidance?", "next": "guidance", "seduction_change": 1},
+                        {"response": "Just looking around.", "next": "look_around", "seduction_change": 0}
+                    ]
+                },
+                "guidance": {
+                    "text": "Oh, I could teach you a thing or two... but only if you’re willing to learn.",
+                    "options": [
+                        {"response": "I'm a fast learner.", "next": "fast_learner", "seduction_change": 1},
+                        {"response": "Maybe another time.", "next": "another_time", "seduction_change": -1}
+                    ]
+                },
+                "look_around": {
+                    "text": "Don’t get lost... unless you want me to find you.",
+                    "options": []
+                },
+                "fast_learner": {
+                    "text": "That’s what I like to hear. Let’s start with a private lesson... Just you and me.",
+                    "options": [
+                        {"response": "I'm ready for anything, Edna.", "next": "ready", "seduction_change": 1},
+                        {"response": "Maybe we should keep this professional.", "next": "professional", "seduction_change": -1}
+                    ]
+                },
+                "another_time": {
+                    "text": "Suit yourself, but I won’t wait forever... You know where to find me.",
+                    "options": []
+                },
+                "ready": {
+                    "text": "Mmm, I love a confident man. Let’s see if you can keep up with me...",
+                    "options": []
+                },
+                "professional": {
+                    "text": "Who said anything about professional? I was thinking we could keep it... personal.",
+                    "options": []
+                }
             },
-            "guidance": {
-                "text": "Oh, I could teach you a thing or two... but only if you’re willing to learn.",
-                "options": [
-                    {"response": "I'm a fast learner.", "next": "fast_learner"},
-                    {"response": "Maybe another time.", "next": "another_time"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "You came back... I knew you couldn't resist my charms. Are you ready for your next lesson?",
+                    "options": [
+                        {"response": "I'm eager to learn more.", "next": "eager_to_learn", "seduction_change": 1},
+                        {"response": "Maybe I should focus on something else.", "next": "focus_elsewhere", "seduction_change": 0}
+                    ]
+                },
+                "eager_to_learn": {
+                    "text": "Good... Let's see just how quickly you can pick things up.",
+                    "options": [
+                        {"response": "I'm ready for anything.", "next": "ready", "seduction_change": 1},
+                        {"response": "Let's take it slow.", "next": "take_it_slow", "seduction_change": 0}
+                    ]
+                },
+                "focus_elsewhere": {
+                    "text": "Maybe you're not ready for this yet. Come back when you are.",
+                    "options": []
+                },
+                "ready": {
+                    "text": "Mmm... I love a man who's ready to dive in.",
+                    "options": []
+                },
+                "take_it_slow": {
+                    "text": "Slow and steady can be just as fun...",
+                    "options": []
+                }
             },
-            "look_around": {
-                "text": "Don’t get lost... unless you want me to find you.",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "I've been waiting for you... You must have known how much I wanted to see you again.",
+                    "options": [
+                        {"response": "I couldn't stay away.", "next": "couldnt_stay_away", "seduction_change": 1},
+                        {"response": "Maybe this is going too far.", "next": "too_far", "seduction_change": -1}
+                    ]
+                },
+                "couldnt_stay_away": {
+                    "text": "Mmm... That's what I wanted to hear. Let's see just how far we can go.",
+                    "options": []
+                },
+                "too_far": {
+                    "text": "Oh, come on... I know you want this as much as I do.",
+                    "options": []
+                }
             },
-            "fast_learner": {
-                "text": "That’s what I like to hear. Let’s start with a private lesson... Just you and me.",
-                "options": [
-                    {"response": "I'm ready for anything, Edna.", "next": "ready"},
-                    {"response": "Maybe we should keep this professional.", "next": "professional"}
-                ]
-            },
-            "another_time": {
-                "text": "Suit yourself, but I won’t wait forever... You know where to find me.",
-                "options": []
-            },
-            "ready": {
-                "text": "Mmm, I love a confident man. Let’s see if you can keep up with me...",
-                "options": []
-            },
-            "professional": {
-                "text": "Who said anything about professional? I was thinking we could keep it... personal.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "I think it's time we took this to the next level, don't you?",
+                    "options": [
+                        {"response": "Let's do it, Edna.", "next": "final_seduction", "seduction_change": 0, "item": "diary_page"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Mmm... You're just the kind of student I've been waiting for. Take this as a token of my... appreciation.",
+                    "options": []
+                }
             }
         }
     },
@@ -172,6 +294,7 @@
         "bounds": [3, 3],
         "color": [128, 128, 128],
         "movement_level": "wandering",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Hey, pal. You here for a drink, or are you just here to cause trouble?",
@@ -197,43 +320,92 @@
         "bounds": [4, 4],
         "color": [128, 0, 128],
         "movement_level": "restless",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Hey there, handsome. I don't suppose you'd like to keep a lonely woman company?",
-                "options": [
-                    {"response": "I'm just here to talk.", "next": "talk"},
-                    {"response": "Maybe for a while.", "next": "while"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Hey there, handsome. I don't suppose you'd like to keep a lonely woman company?",
+                    "options": [
+                        {"response": "I'm just here to talk.", "next": "talk", "seduction_change": 0},
+                        {"response": "Maybe for a while.", "next": "while", "seduction_change": 1}
+                    ]
+                },
+                "talk": {
+                    "text": "Talk? Why don't we do something more... fun? I could use a strong man like you to keep me warm.",
+                    "options": [
+                        {"response": "What do you have in mind?", "next": "mind", "seduction_change": 1},
+                        {"response": "I should go.", "next": "go", "seduction_change": -1}
+                    ]
+                },
+                "while": {
+                    "text": "I like a man who knows what he wants. How about we take this somewhere private? Just you and me...",
+                    "options": [
+                        {"response": "Let's take it slow.", "next": "slow", "seduction_change": 0},
+                        {"response": "Alright, lead the way.", "next": "lead_way", "seduction_change": 1}
+                    ]
+                },
+                "mind": {
+                    "text": "I've got a few ideas... We could start with a drink, and see where the night takes us...",
+                    "options": []
+                },
+                "go": {
+                    "text": "Your loss, sweetheart. But I'll be here if you change your mind. I'll be thinking about you...",
+                    "options": []
+                },
+                "slow": {
+                    "text": "Slow and steady wins the race... but I wouldn't mind speeding things up with someone like you.",
+                    "options": []
+                },
+                "lead_way": {
+                    "text": "Right this way, darling. Let's make this night unforgettable.",
+                    "options": []
+                }
             },
-            "talk": {
-                "text": "Talk? Why don't we do something more... fun? I could use a strong man like you to keep me warm.",
-                "options": [
-                    {"response": "What do you have in mind?", "next": "mind"},
-                    {"response": "I should go.", "next": "go"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "I knew you'd be back... A woman like me is hard to resist, isn't she?",
+                    "options": [
+                        {"response": "I couldn't stay away.", "next": "stay_away", "seduction_change": 1},
+                        {"response": "Just passing through again.", "next": "passing_through", "seduction_change": 0}
+                    ]
+                },
+                "stay_away": {
+                    "text": "Mmm... That's what I like to hear. Let's get comfortable.",
+                    "options": []
+                },
+                "passing_through": {
+                    "text": "Don't keep me waiting too long, honey. I'm getting impatient...",
+                    "options": []
+                }
             },
-            "while": {
-                "text": "I like a man who knows what he wants. How about we take this somewhere private? Just you and me...",
-                "options": [
-                    {"response": "Let's take it slow.", "next": "slow"},
-                    {"response": "Alright, lead the way.", "next": "lead_way"}
-                ]
+            "seduction_2": {
+                "start": {
+                    "text": "I've been thinking about you all day... How about we take this to the next level?",
+                    "options": [
+                        {"response": "I'm ready when you are.", "next": "ready", "seduction_change": 1},
+                        {"response": "Maybe we should slow down.", "next": "slow_down", "seduction_change": -1}
+                    ]
+                },
+                "ready": {
+                    "text": "Good... Let's make this night one to remember.",
+                    "options": []
+                },
+                "slow_down": {
+                    "text": "Slowing down isn't my style, but for you... I might make an exception.",
+                    "options": []
+                }
             },
-            "mind": {
-                "text": "I've got a few ideas... We could start with a drink, and see where the night takes us...",
-                "options": []
-            },
-            "go": {
-                "text": "Your loss, sweetheart. But I'll be here if you change your mind. I'll be thinking about you...",
-                "options": []
-            },
-            "slow": {
-                "text": "Slow and steady wins the race... but I wouldn't mind speeding things up with someone like you.",
-                "options": []
-            },
-            "lead_way": {
-                "text": "Right this way, darling. Let's make this night unforgettable.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "I can't wait any longer... Take me, now.",
+                    "options": [
+                        {"response": "Let's do this, Selma.", "next": "final_seduction", "seduction_change": 0, "item": "macguyvers_pubesette"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Mmm... You're just what I needed. Take this as a token of our night together.",
+                    "options": []
+                }
             }
         }
     },
@@ -244,6 +416,7 @@
         "bounds": [4, 4],
         "color": [255, 255, 0],
         "movement_level": "restless",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Did you know that the average IQ in Springfield is... oh, never mind.",
@@ -276,6 +449,7 @@
         "bounds": [2, 2],
         "color": [255, 192, 203],
         "movement_level": "toodling",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Maggie stares at you with her big, innocent eyes.",
@@ -301,32 +475,81 @@
         "bounds": [3, 3],
         "color": [128, 128, 0],
         "movement_level": "restless",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Well, well... You remind me of a younger, more handsome man... someone who could really make Principal Skinner pay...",
-                "options": [
-                    {"response": "You must miss those days.", "next": "miss_him"},
-                    {"response": "I should go.", "next": "go"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Well, well... You remind me of a younger, more handsome man... someone who could really make Principal Skinner pay...",
+                    "options": [
+                        {"response": "You must miss those days.", "next": "miss_him", "seduction_change": 1},
+                        {"response": "I should go.", "next": "go", "seduction_change": 0}
+                    ]
+                },
+                "miss_him": {
+                    "text": "Oh, I do... but I wouldn’t mind finding a new man to put that prissy little mama's boy in his place.",
+                    "options": [
+                        {"response": "I’m flattered.", "next": "flattered", "seduction_change": 1},
+                        {"response": "I'm not looking to settle down.", "next": "settle_down", "seduction_change": -1}
+                    ]
+                },
+                "go": {
+                    "text": "Running away? That's too bad... I was just getting interested in showing you what a real woman can do.",
+                    "options": []
+                },
+                "flattered": {
+                    "text": "Good. Now, how about we discuss this over a nice dinner? I make a mean lasagna... and I know a few other things that might surprise you.",
+                    "options": []
+                },
+                "settle_down": {
+                    "text": "Who said anything about settling down? I just want a good time with a good man... and you seem like the perfect candidate to make Skinner jealous.",
+                    "options": []
+                }
             },
-            "miss_him": {
-                "text": "Oh, I do... but I wouldn’t mind finding a new man to put that prissy little mama's boy in his place.",
-                "options": [
-                    {"response": "I’m flattered.", "next": "flattered"},
-                    {"response": "I'm not looking to settle down.", "next": "settle_down"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "You remind me so much of that man I used to know... But you're better. Stronger.",
+                    "options": [
+                        {"response": "I'm here to prove it.", "next": "prove_it", "seduction_change": 1},
+                        {"response": "Maybe we shouldn't.", "next": "shouldnt", "seduction_change": 0}
+                    ]
+                },
+                "prove_it": {
+                    "text": "Mmm... I like that confidence. Let's see what you can do.",
+                    "options": []
+                },
+                "shouldnt": {
+                    "text": "Oh, come on... Live a little. Skinner never needs to know.",
+                    "options": []
+                }
             },
-            "go": {
-                "text": "Running away? That's too bad... I was just getting interested in showing you what a real woman can do.",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "I've been waiting for someone like you... Strong, decisive.",
+                    "options": [
+                        {"response": "Let's make it happen.", "next": "make_it_happen", "seduction_change": 1},
+                        {"response": "Maybe we should slow down.", "next": "slow_down", "seduction_change": -1}
+                    ]
+                },
+                "make_it_happen": {
+                    "text": "Mmm... That's what I wanted to hear.",
+                    "options": []
+                },
+                "slow_down": {
+                    "text": "Oh, but where's the fun in that?",
+                    "options": []
+                }
             },
-            "flattered": {
-                "text": "Good. Now, how about we discuss this over a nice dinner? I make a mean lasagna... and I know a few other things that might surprise you.",
-                "options": []
-            },
-            "settle_down": {
-                "text": "Who said anything about settling down? I just want a good time with a good man... and you seem like the perfect candidate to make Skinner jealous.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "You and me, let's make Skinner jealous.",
+                    "options": [
+                        {"response": "Let's do it.", "next": "final_seduction", "seduction_change": 0, "item": "old_wine_bottle"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Take this as a token... and let's make him jealous.",
+                    "options": []
+                }
             }
         }
     },
@@ -337,43 +560,92 @@
         "bounds": [2, 2],
         "color": [0, 255, 0],
         "movement_level": "toodling",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Oh, my... You look like an angel sent from heaven, here to take me to... a very sensual paradise...",
-                "options": [
-                    {"response": "I’m here to help, Maude.", "next": "help"},
-                    {"response": "Just passing through.", "next": "passing_through"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Oh, my... You look like an angel sent from heaven, here to take me to... a very sensual paradise...",
+                    "options": [
+                        {"response": "I’m here to help, Maude.", "next": "help", "seduction_change": 1},
+                        {"response": "Just passing through.", "next": "passing_through", "seduction_change": 0}
+                    ]
+                },
+                "help": {
+                    "text": "That’s sweet of you... Maybe you could help me with more than just chores? Maybe you could help me ascend to a... higher place...",
+                    "options": [
+                        {"response": "What do you need?", "next": "need", "seduction_change": 1},
+                        {"response": "I’m not sure that’s appropriate.", "next": "not_appropriate", "seduction_change": -1}
+                    ]
+                },
+                "passing_through": {
+                    "text": "That’s a shame... I was hoping you could be my guide to that... higher plane.",
+                    "options": []
+                },
+                "need": {
+                    "text": "I’ve got a few things in mind... but let’s keep it between us. You seem like a man who could handle... a little divine intervention.",
+                    "options": [
+                        {"response": "I'm good at keeping secrets.", "next": "secrets", "seduction_change": 1},
+                        {"response": "This might be crossing a line...", "next": "crossing_line", "seduction_change": -1}
+                    ]
+                },
+                "not_appropriate": {
+                    "text": "Maybe not... but sometimes the most sacred things are... a little naughty.",
+                    "options": []
+                },
+                "secrets": {
+                    "text": "Good... Because I can think of a few things I’d love to do with you... things that would make even an angel blush.",
+                    "options": []
+                },
+                "crossing_line": {
+                    "text": "Maybe... but isn’t it fun to break the rules every now and then? Even the divine have their... indulgences.",
+                    "options": []
+                }
             },
-            "help": {
-                "text": "That’s sweet of you... Maybe you could help me with more than just chores? Maybe you could help me ascend to a... higher place...",
-                "options": [
-                    {"response": "What do you need?", "next": "need"},
-                    {"response": "I’m not sure that’s appropriate.", "next": "not_appropriate"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "You've come back... I was hoping you would. There's something about you... something divine.",
+                    "options": [
+                        {"response": "Let's explore that.", "next": "explore", "seduction_change": 1},
+                        {"response": "I should be going.", "next": "going", "seduction_change": 0}
+                    ]
+                },
+                "explore": {
+                    "text": "Mmm... Yes, let's see where this takes us.",
+                    "options": []
+                },
+                "going": {
+                    "text": "Don't take too long... I'll be here, thinking of you.",
+                    "options": []
+                }
             },
-            "passing_through": {
-                "text": "That’s a shame... I was hoping you could be my guide to that... higher plane.",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "I can't stop thinking about you... It's as if the heavens themselves are pushing us together.",
+                    "options": [
+                        {"response": "Let's not fight it.", "next": "not_fight_it", "seduction_change": 1},
+                        {"response": "Maybe we should slow down.", "next": "slow_down", "seduction_change": -1}
+                    ]
+                },
+                "not_fight_it": {
+                    "text": "Mmm... Exactly what I was hoping you'd say.",
+                    "options": []
+                },
+                "slow_down": {
+                    "text": "Slowing down isn't easy when you're in heaven... but for you, I might make an exception.",
+                    "options": []
+                }
             },
-            "need": {
-                "text": "I’ve got a few things in mind... but let’s keep it between us. You seem like a man who could handle... a little divine intervention.",
-                "options": [
-                    {"response": "I'm good at keeping secrets.", "next": "secrets"},
-                    {"response": "This might be crossing a line...", "next": "crossing_line"}
-                ]
-            },
-            "not_appropriate": {
-                "text": "Maybe not... but sometimes the most sacred things are... a little naughty.",
-                "options": []
-            },
-            "secrets": {
-                "text": "Good... Because I can think of a few things I’d love to do with you... things that would make even an angel blush.",
-                "options": []
-            },
-            "crossing_line": {
-                "text": "Maybe... but isn’t it fun to break the rules every now and then? Even the divine have their... indulgences.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "I think we're destined for something great, you and I... Shall we?",
+                    "options": [
+                        {"response": "Let's do it, Maude.", "next": "final_seduction", "seduction_change": 0, "item": "white_wine"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Take this as a token of our divine connection.",
+                    "options": []
+                }
             }
         }
     },
@@ -384,6 +656,7 @@
         "bounds": [2, 2],
         "color": [128, 0, 128],
         "movement_level": "wandering",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Oh, you’re here... Please, go ahead and talk to Luanne. I’ll just... be in the closet.",
@@ -409,32 +682,81 @@
         "bounds": [2, 2],
         "color": [255, 105, 180],
         "movement_level": "toodling",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Oh, it’s you. Kirk told me you’d be stopping by... He says you’re just his type.",
-                "options": [
-                    {"response": "Kirk’s okay with this?", "next": "kirk_ok"},
-                    {"response": "This feels wrong.", "next": "feels_wrong"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Oh, it’s you. Kirk told me you’d be stopping by... He says you’re just his type.",
+                    "options": [
+                        {"response": "Kirk’s okay with this?", "next": "kirk_ok", "seduction_change": 1},
+                        {"response": "This feels wrong.", "next": "feels_wrong", "seduction_change": 0}
+                    ]
+                },
+                "kirk_ok": {
+                    "text": "Oh, don’t worry about Kirk. He’s... well, let’s just say he has his own interests. He likes to watch...",
+                    "options": [
+                        {"response": "Alright then, let’s continue.", "next": "continue", "seduction_change": 1},
+                        {"response": "I’m not sure about this.", "next": "not_sure", "seduction_change": -1}
+                    ]
+                },
+                "feels_wrong": {
+                    "text": "Maybe... but wouldn’t it be fun to bend the rules a little? Kirk likes to watch from the closet...",
+                    "options": []
+                },
+                "continue": {
+                    "text": "Good... I could use some attention. Kirk has been so... absent lately. Let’s make him pay attention for once.",
+                    "options": []
+                },
+                "not_sure": {
+                    "text": "You’re hesitating? That’s okay. Just know that I’m here... and so is Kirk... in the closet... whenever you’re ready.",
+                    "options": []
+                }
             },
-            "kirk_ok": {
-                "text": "Oh, don’t worry about Kirk. He’s... well, let’s just say he has his own interests. He likes to watch...",
-                "options": [
-                    {"response": "Alright then, let’s continue.", "next": "continue"},
-                    {"response": "I’m not sure about this.", "next": "not_sure"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "Back again? I knew you couldn't stay away... You and I have something special.",
+                    "options": [
+                        {"response": "I'm just here to check on you.", "next": "check_on_you", "seduction_change": 0},
+                        {"response": "Let's make the most of it.", "next": "most_of_it", "seduction_change": 1}
+                    ]
+                },
+                "check_on_you": {
+                    "text": "Oh, don't be shy... Kirk loves to watch. He's right there in the closet.",
+                    "options": []
+                },
+                "most_of_it": {
+                    "text": "Mmm... That's what I like to hear. Let's make him pay attention for once.",
+                    "options": []
+                }
             },
-            "feels_wrong": {
-                "text": "Maybe... but wouldn’t it be fun to bend the rules a little? Kirk likes to watch from the closet...",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "Kirk's been so absent lately... I need someone like you to fill the void.",
+                    "options": [
+                        {"response": "I'm here for you.", "next": "here_for_you", "seduction_change": 1},
+                        {"response": "Maybe we should slow down.", "next": "slow_down", "seduction_change": -1}
+                    ]
+                },
+                "here_for_you": {
+                    "text": "Good... Let's make this something to remember.",
+                    "options": []
+                },
+                "slow_down": {
+                    "text": "Slowing down isn't my style, but for you... I might make an exception.",
+                    "options": []
+                }
             },
-            "continue": {
-                "text": "Good... I could use some attention. Kirk has been so... absent lately. Let’s make him pay attention for once.",
-                "options": []
-            },
-            "not_sure": {
-                "text": "You’re hesitating? That’s okay. Just know that I’m here... and so is Kirk... in the closet... whenever you’re ready.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "Kirk's in the closet, watching... Let's give him a show he won't forget.",
+                    "options": [
+                        {"response": "Let's do it, Luanne.", "next": "final_seduction", "seduction_change": 0, "item": "lingerie"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Take this as a token of our time together... And let's not tell Kirk everything.",
+                    "options": []
+                }
             }
         }
     },
@@ -445,6 +767,7 @@
         "bounds": [3, 3],
         "color": [0, 0, 0],
         "movement_level": "wandering",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Ah, an employee! Or are you here to make a deal with the devil?",
@@ -470,6 +793,7 @@
         "bounds": [2, 2],
         "color": [0, 255, 255],
         "movement_level": "toodling",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Hey, you’re not here to make fun of me, are you?",
@@ -495,6 +819,7 @@
         "bounds": [2, 2],
         "color": [255, 223, 0],
         "movement_level": "restless",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Welcome! What can I get for you today?",
@@ -520,6 +845,7 @@
         "bounds": [3, 3],
         "color": [139, 69, 19],
         "movement_level": "wandering",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Haw-haw! You here to get your butt kicked?",
@@ -545,6 +871,7 @@
         "bounds": [2, 2],
         "color": [255, 20, 147],
         "movement_level": "toodling",
+        "seduction_level": "None",
         "dialogue": {
             "start": {
                 "text": "Hi, I’m Ralph! My cat's breath smells like cat food.",
@@ -570,43 +897,92 @@
         "bounds": [2, 2],
         "color": [192, 192, 192],
         "movement_level": "restless",
+        "seduction_level": 0,
         "dialogue": {
-            "start": {
-                "text": "Oh my stars... You look just like Mr. Burns in his younger years... strong, commanding... I’ve never been more sure of my feelings...",
-                "options": [
-                    {"response": "It’s just you and me, Smithers.", "next": "just_us"},
-                    {"response": "I’ll come back later.", "next": "come_back"}
-                ]
+            "seduction_0": {
+                "start": {
+                    "text": "Oh my stars... You look just like Mr. Burns in his younger years... strong, commanding... I’ve never been more sure of my feelings...",
+                    "options": [
+                        {"response": "It’s just you and me, Smithers.", "next": "just_us", "seduction_change": 1},
+                        {"response": "I’ll come back later.", "next": "come_back", "seduction_change": 0}
+                    ]
+                },
+                "just_us": {
+                    "text": "Well, I suppose... I could use the company. You know, Mr. Burns has always been my guiding star... but you, you’re something else... something I never dared to dream of.",
+                    "options": [
+                        {"response": "I can keep you company.", "next": "company", "seduction_change": 1},
+                        {"response": "Maybe this isn’t the right time.", "next": "not_right_time", "seduction_change": -1}
+                    ]
+                },
+                "come_back": {
+                    "text": "Alright, but don’t keep me waiting too long... It’s rare to find someone who can... fill Mr. Burns' shoes.",
+                    "options": []
+                },
+                "company": {
+                    "text": "You’re very kind... and rather charming. Perhaps we could... get to know each other better? I’ve always wondered what it would be like to be with someone like you... someone who could command a room just like Mr. Burns.",
+                    "options": [
+                        {"response": "I’d like that, Smithers.", "next": "like_that", "seduction_change": 1},
+                        {"response": "Let’s take things slow.", "next": "slow", "seduction_change": 0}
+                    ]
+                },
+                "not_right_time": {
+                    "text": "I understand... But know that I’ll be here, thinking about you... and what might have been.",
+                    "options": []
+                },
+                "like_that": {
+                    "text": "Mmm... I’ve never felt this way before. You’re quite irresistible... It’s like Mr. Burns, but with... something more... something I never thought possible.",
+                    "options": []
+                },
+                "slow": {
+                    "text": "Slow is good... But I hope you won’t keep me waiting forever. There’s a fire burning inside me that only you can quench.",
+                    "options": []
+                }
             },
-            "just_us": {
-                "text": "Well, I suppose... I could use the company. You know, Mr. Burns has always been my guiding star... but you, you’re something else... something I never dared to dream of.",
-                "options": [
-                    {"response": "I can keep you company.", "next": "company"},
-                    {"response": "Maybe this isn’t the right time.", "next": "not_right_time"}
-                ]
+            "seduction_1": {
+                "start": {
+                    "text": "You're back... and looking even more like Mr. Burns. But there's something else... something more.",
+                    "options": [
+                        {"response": "I think I know what you're feeling.", "next": "know_feeling", "seduction_change": 1},
+                        {"response": "I'm just checking in.", "next": "checking_in", "seduction_change": 0}
+                    ]
+                },
+                "know_feeling": {
+                    "text": "Mmm... Then you know how hard it is to resist. Perhaps we shouldn't...",
+                    "options": []
+                },
+                "checking_in": {
+                    "text": "Well, don't leave too soon... I might need you.",
+                    "options": []
+                }
             },
-            "come_back": {
-                "text": "Alright, but don’t keep me waiting too long... It’s rare to find someone who can... fill Mr. Burns' shoes.",
-                "options": []
+            "seduction_2": {
+                "start": {
+                    "text": "I can't stop thinking about you... You're everything I've dreamed of.",
+                    "options": [
+                        {"response": "I feel the same way.", "next": "feel_same", "seduction_change": 1},
+                        {"response": "Maybe we should slow down.", "next": "slow_down", "seduction_change": -1}
+                    ]
+                },
+                "feel_same": {
+                    "text": "Mmm... Then let's not waste any more time.",
+                    "options": []
+                },
+                "slow_down": {
+                    "text": "Oh, but where's the fun in that?",
+                    "options": []
+                }
             },
-            "company": {
-                "text": "You’re very kind... and rather charming. Perhaps we could... get to know each other better? I’ve always wondered what it would be like to be with someone like you... someone who could command a room just like Mr. Burns.",
-                "options": [
-                    {"response": "I’d like that, Smithers.", "next": "like_that"},
-                    {"response": "Let’s take things slow.", "next": "slow"}
-                ]
-            },
-            "not_right_time": {
-                "text": "I understand... But know that I’ll be here, thinking about you... and what might have been.",
-                "options": []
-            },
-            "like_that": {
-                "text": "Mmm... I’ve never felt this way before. You’re quite irresistible... It’s like Mr. Burns, but with... something more... something I never thought possible.",
-                "options": []
-            },
-            "slow": {
-                "text": "Slow is good... But I hope you won’t keep me waiting forever. There’s a fire burning inside me that only you can quench.",
-                "options": []
+            "seduction_3": {
+                "start": {
+                    "text": "Let's make this happen... Just you and me, forever.",
+                    "options": [
+                        {"response": "Let's do it, Smithers.", "next": "final_seduction", "seduction_change": 0, "item": "tie"}
+                    ]
+                },
+                "final_seduction": {
+                    "text": "Take this as a symbol of our commitment... to each other.",
+                    "options": []
+                }
             }
         }
     }
