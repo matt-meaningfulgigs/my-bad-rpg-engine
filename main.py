@@ -1,5 +1,6 @@
 import pygame
 from engine import Game
+from npcs import NPCManager
 
 # Initialize Pygame
 pygame.init()
@@ -12,6 +13,9 @@ pygame.display.set_caption('Stupid Little Feeble Attempt at an RPG')
 
 # Create the game object
 game = Game(screen)
+
+# Initialize NPC Manager to keep track of NPC states
+npc_manager = NPCManager()
 
 # Main game loop
 running = True

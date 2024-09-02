@@ -67,13 +67,13 @@ class Game:
             movement_range = self.get_movement_range(npc_info["movement_level"])
             first_name = npc_info["name"].split()[0]  # Extract the first name
 
-            # Handle seduction_level, converting it to an integer or None
-            seduction_level = npc_info.get("seduction_level", None)
-            if seduction_level is not None and seduction_level != 'None':
+            # Handle seduction_level, converting it to an integer and replacing 'None' with -99
+            seduction_level = npc_info.get("seduction_level", -99)
+            if isinstance(seduction_level, str):
                 try:
                     seduction_level = int(seduction_level)
                 except ValueError:
-                    seduction_level = None  # Fallback if conversion fails
+                    seduction_level = -99  # Fallback if conversion fails
 
             self.npc_data[npc_id] = {
                 "name": first_name,
@@ -330,18 +330,12 @@ class Game:
     def render_effects(self, npc, npc_rect):
         current_time = time.time()
 
-        # Skip rendering effects if seduction level is None
-        seduction_level = npc.get("seduction_level", None)
+        # Skip rendering effects if seduction level is -99 (non-seducible)
+        seduction_level = npc.get("seduction_level", -99)
         
-        if seduction_level is None:
+        if seduction_level == -99:
             return
         
-        # Ensure seduction_level is an integer
-        try:
-            seduction_level = int(seduction_level)
-        except (ValueError, TypeError):
-            return  # Skip rendering if seduction_level can't be converted to an integer
-
         if seduction_level >= 3:
             # Render hearts when fully seduced
             if "effect_start_time" not in npc or current_time - npc["effect_start_time"] > random.uniform(1.5, 2.5):
@@ -374,12 +368,12 @@ class Game:
     def end_conversation(self):
         print("[Game] Conversation ended, returning to exploration mode.")
         
-        if self.current_npc and self.current_npc.get("seduction_level") is not None:
+        if self.current_npc:
             try:
                 # Convert seduction_level to an integer if it is not already
-                current_level = int(self.current_npc.get("seduction_level", 0))
+                current_level = int(self.current_npc.get("seduction_level", -99))
             except ValueError:
-                current_level = 0  # Default to 0 if the conversion fails
+                current_level = -99  # Default to -99 if the conversion fails
 
             # Adjust seduction level based on player's choices
             seduction_change = self.conversation_engine.npc.get("seduction_change", 0)
